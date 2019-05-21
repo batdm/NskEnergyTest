@@ -12,6 +12,7 @@ public class Employee {
 
     private static Map<Integer, Employee> allEmployees = new HashMap<>();
     private static int countId = 0;
+    private String[] positionArr = {"Dev", "QA", "Team lead"};
 
 
     Employee(String name, int age, String position) {
@@ -19,7 +20,7 @@ public class Employee {
         this.age = age;
         this.position = position;
 
-        if (!hasEmployee()) {
+        if (!hasEmployee() && isPositionExist(position)) {
             countId++;
             this.id = countId;
             allEmployees.put(id, this);
@@ -50,6 +51,15 @@ public class Employee {
     private boolean hasEmployee() {
         for (Employee e : allEmployees.values()) {
             if (e.equals(this) && e.hashCode() == this.hashCode()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isPositionExist(String p) {
+        for (String s : positionArr) {
+            if (s == p) {
                 return true;
             }
         }
@@ -108,6 +118,8 @@ public class Employee {
         new Employee("Стас", 33, "QA");
         new Employee("Марина", 20, "Dev");
         new Employee("Евгений", 30, "Team lead");
+        new Employee("", 0, "");
+//        new Employee("Евгений", 30, "Team");
         System.out.println("Все сотрудники");
         Employee.getAllEmployees().forEach(System.out::println);
     }
