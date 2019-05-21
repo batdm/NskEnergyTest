@@ -6,8 +6,6 @@ public class Employee {
     private int id;
     private String name;
     private int age;
-    private boolean is_work;
-    private String department;
     private String position;
 
     private static Map<Integer, Employee> allEmployees = new HashMap<>();
@@ -35,10 +33,6 @@ public class Employee {
         return id;
     }
 
-    public String getDepartment() {
-        return department;
-    }
-
     public String getName() {
         return name;
     }
@@ -56,7 +50,7 @@ public class Employee {
         }
         return false;
     }
-
+    //проверка существующей должности из массива positionArr.
     public boolean isPositionExist(String p) {
         for (String s : positionArr) {
             if (s == p) {
@@ -91,10 +85,11 @@ public class Employee {
                 + "'}";
     }
 
+    //показать всех сотрудников
     public static List<Employee> getAllEmployees() {
         return new ArrayList<>(allEmployees.values());
     }
-
+    //показать всех сотрудников на определенной должности
     public static List<Employee> getAllEmployees(String position) {
         List<Employee> listAllEmployees = new ArrayList<>();
         for (Employee e : allEmployees.values()) {
@@ -104,11 +99,11 @@ public class Employee {
         }
         return listAllEmployees;
     }
-
+    //кол-во сотрудников
     public static int getHowManyEmployees() {
         return allEmployees.size();
     }
-
+    //кол-во сотрудников на определенной должности
     public static int getHowManyEmployees(String position) {
         return getAllEmployees(position).size();
     }
